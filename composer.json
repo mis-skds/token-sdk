@@ -1,0 +1,41 @@
+{
+    "name": "codesbytvt/token-management-sdk",
+    "description": "PHP SDK for Token Management API - Queue management system client library",
+    "type": "library",
+    "keywords": [
+        "token",
+        "queue",
+        "management",
+        "api",
+        "sdk",
+        "client"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "codesbytvt",
+            "email": "developer@codesbytvt.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "phpstan/phpstan": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TokenManagement\\SDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TokenManagement\\SDK\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
