@@ -67,13 +67,33 @@ class TokenResource
      * Find the next token number that will be issued
      *
      * @param int $locationId
+     * @param string|null $forDate Optional date (Y-m-d format). Defaults to today if not provided.
+     * @param int|null $servicePointId Optional service point ID
+     * @param int|null $categoryId Optional category ID
      * @return array
      */
-    public function findNext(int $locationId): array
+    public function findNext(
+        int $locationId, 
+        ?string $forDate = null,
+        ?int $servicePointId = null,
+        ?int $categoryId = null
+    ): array
     {
-        $response = $this->client->post('api/secured/tokens/find-next-token', [
-            'mlocation_id' => $locationId
-        ]);
+        $data = ['mlocation_id' => $locationId];
+        
+        if ($forDate !== null) {
+            $data['for_date'] = $forDate;
+        }
+        
+        if ($servicePointId !== null) {
+            $data['mservicepoint_id'] = $servicePointId;
+        }
+        
+        if ($categoryId !== null) {
+            $data['mtokencategory_id'] = $categoryId;
+        }
+        
+        $response = $this->client->post('api/secured/tokens/find-next-token', $data);
         return $response['data'] ?? $response;
     }
 
