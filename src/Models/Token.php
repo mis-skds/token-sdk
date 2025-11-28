@@ -29,7 +29,8 @@ class Token
      */
     public function getId(): ?int
     {
-        return $this->data['id'] ?? null;
+        $id = $this->data['id'] ?? null;
+        return $id !== null ? (int) $id : null;
     }
 
     /**
@@ -49,7 +50,8 @@ class Token
      */
     public function getLocationId(): ?int
     {
-        return $this->data['mlocation_id'] ?? null;
+        $id = $this->data['mlocation_id'] ?? null;
+        return $id !== null ? (int) $id : null;
     }
 
     /**
@@ -59,7 +61,8 @@ class Token
      */
     public function getServicePointId(): ?int
     {
-        return $this->data['mservicepoint_id'] ?? null;
+        $id = $this->data['mservicepoint_id'] ?? null;
+        return $id !== null ? (int) $id : null;
     }
 
     /**
@@ -69,7 +72,8 @@ class Token
      */
     public function getCategoryId(): ?int
     {
-        return $this->data['mtokencategory_id'] ?? null;
+        $id = $this->data['mtokencategory_id'] ?? null;
+        return $id !== null ? (int) $id : null;
     }
 
     /**
@@ -95,9 +99,9 @@ class Token
     /**
      * Get status
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getStatus(): ?int
+    public function getStatus(): ?string
     {
         return $this->data['status'] ?? null;
     }
