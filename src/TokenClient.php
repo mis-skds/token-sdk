@@ -73,6 +73,22 @@ class TokenClient
     }
 
     /**
+     * Check API health and connectivity
+     *
+     * @return array Health status information
+     * @throws \Exception if health check fails
+     */
+    public function health(): array
+    {
+        try {
+            $response = $this->httpClient->get('api/health');
+            return $response;
+        } catch (\Exception $e) {
+            throw new \Exception('Health check failed: ' . $e->getMessage(), 0, $e);
+        }
+    }
+
+    /**
      * Access authentication methods
      *
      * @return AuthService

@@ -35,7 +35,7 @@ class TokenResource
      */
     public function list(array $filters = []): array
     {
-        $response = $this->client->get('/api/secured/tokens', $filters);
+        $response = $this->client->get('api/secured/tokens', $filters);
         return $response['data'] ?? $response;
     }
 
@@ -47,7 +47,7 @@ class TokenResource
      */
     public function get(int $id): Token
     {
-        $response = $this->client->get("/api/secured/tokens/{$id}");
+        $response = $this->client->get("api/secured/tokens/{$id}");
         return new Token($response['data'] ?? $response);
     }
 
@@ -59,7 +59,7 @@ class TokenResource
      */
     public function issue(array $data): Token
     {
-        $response = $this->client->post('/api/secured/tokens/issue-token', $data);
+        $response = $this->client->post('api/secured/tokens/issue', $data);
         return new Token($response['data'] ?? $response);
     }
 
@@ -71,7 +71,7 @@ class TokenResource
      */
     public function findNext(int $locationId): array
     {
-        $response = $this->client->post('/api/secured/tokens/find-next-token', [
+        $response = $this->client->post('api/secured/tokens/find-next-token', [
             'mlocation_id' => $locationId
         ]);
         return $response['data'] ?? $response;
@@ -86,7 +86,7 @@ class TokenResource
      */
     public function callNext(int $locationId, int $servicePointId): Token
     {
-        $response = $this->client->post('/api/secured/tokens/call-next', [
+        $response = $this->client->post('api/secured/tokens/call-next', [
             'mlocation_id' => $locationId,
             'mservicepoint_id' => $servicePointId
         ]);
@@ -103,7 +103,7 @@ class TokenResource
      */
     public function callById(int $tokenId, int $locationId, int $servicePointId): Token
     {
-        $response = $this->client->post("/api/secured/tokens/call-by-id/{$tokenId}", [
+        $response = $this->client->post("api/secured/tokens/{$tokenId}/call", [
             'mlocation_id' => $locationId,
             'mservicepoint_id' => $servicePointId
         ]);
@@ -120,7 +120,7 @@ class TokenResource
      */
     public function skip(int $tokenId, int $locationId, int $servicePointId): Token
     {
-        $response = $this->client->post("/api/secured/tokens/skip-by-id/{$tokenId}", [
+        $response = $this->client->post("api/secured/tokens/{$tokenId}/skip", [
             'mlocation_id' => $locationId,
             'mservicepoint_id' => $servicePointId
         ]);
@@ -137,7 +137,7 @@ class TokenResource
      */
     public function complete(int $tokenId, int $locationId, int $servicePointId): Token
     {
-        $response = $this->client->post("/api/secured/tokens/complete-by-id/{$tokenId}", [
+        $response = $this->client->post("api/secured/tokens/{$tokenId}/complete", [
             'mlocation_id' => $locationId,
             'mservicepoint_id' => $servicePointId
         ]);
@@ -152,7 +152,7 @@ class TokenResource
      */
     public function currentlyServing(int $locationId): array
     {
-        $response = $this->client->get('/api/secured/tokens/currently-serving', [
+        $response = $this->client->get('api/secured/tokens/currently-serving', [
             'mlocation_id' => $locationId
         ]);
         return $response['data'] ?? $response;
@@ -167,7 +167,7 @@ class TokenResource
      */
     public function update(int $id, array $data): Token
     {
-        $response = $this->client->put("/api/secured/tokens/{$id}", $data);
+        $response = $this->client->put("api/secured/tokens/{$id}", $data);
         return new Token($response['data'] ?? $response);
     }
 
@@ -179,6 +179,6 @@ class TokenResource
      */
     public function delete(int $id): array
     {
-        return $this->client->delete("/api/secured/tokens/{$id}");
+        return $this->client->delete("api/secured/tokens/{$id}");
     }
 }

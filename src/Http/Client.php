@@ -39,7 +39,7 @@ class Client
      */
     public function __construct(array $config)
     {
-        $this->baseUrl = rtrim($config['base_url'], '/');
+        $this->baseUrl = rtrim($config['base_url'], '/') . '/';
         $this->clientId = $config['client_id'] ?? null;
         $this->clientSecret = $config['client_secret'] ?? null;
         

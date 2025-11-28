@@ -15,37 +15,36 @@ class DisplayResource
 
     public function list(array $filters = []): array
     {
-        $response = $this->client->get('/api/secured/displays', $filters);
+        $response = $this->client->get('api/secured/displays', $filters);
         return $response['data'] ?? $response;
     }
 
     public function get(int $id): array
     {
-        $response = $this->client->get("/api/secured/displays/{$id}");
+        $response = $this->client->get("api/secured/displays/{$id}");
         return $response['data'] ?? $response;
     }
 
     public function create(array $data): array
     {
-        $response = $this->client->post('/api/secured/displays/save', $data);
+        $response = $this->client->post('api/secured/displays', $data);
         return $response['data'] ?? $response;
     }
 
     public function update(int $id, array $data): array
     {
-        $data['id'] = $id;
-        $response = $this->client->post('/api/secured/displays/save', $data);
+        $response = $this->client->put("api/secured/displays/{$id}", $data);
         return $response['data'] ?? $response;
     }
 
     public function delete(int $id): array
     {
-        return $this->client->delete("/api/secured/displays/{$id}");
+        return $this->client->delete("api/secured/displays/{$id}");
     }
 
     public function getData(int $displayId): array
     {
-        $response = $this->client->get("/api/common/displays/{$displayId}/data");
+        $response = $this->client->get("api/common/displays/{$displayId}/data");
         return $response['data'] ?? $response;
     }
 }

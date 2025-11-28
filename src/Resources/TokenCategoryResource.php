@@ -15,31 +15,30 @@ class TokenCategoryResource
 
     public function list(array $filters = []): array
     {
-        $response = $this->client->get('/api/secured/token-categories', $filters);
+        $response = $this->client->get('api/secured/token-categories', $filters);
         return $response['data'] ?? $response;
     }
 
     public function get(int $id): array
     {
-        $response = $this->client->get("/api/secured/token-categories/{$id}");
+        $response = $this->client->get("api/secured/token-categories/{$id}");
         return $response['data'] ?? $response;
     }
 
     public function create(array $data): array
     {
-        $response = $this->client->post('/api/secured/token-categories/save', $data);
+        $response = $this->client->post('api/secured/token-categories', $data);
         return $response['data'] ?? $response;
     }
 
     public function update(int $id, array $data): array
     {
-        $data['id'] = $id;
-        $response = $this->client->post('/api/secured/token-categories/save', $data);
+        $response = $this->client->put("api/secured/token-categories/{$id}", $data);
         return $response['data'] ?? $response;
     }
 
     public function delete(int $id): array
     {
-        return $this->client->delete("/api/secured/token-categories/{$id}");
+        return $this->client->delete("api/secured/token-categories/{$id}");
     }
 }

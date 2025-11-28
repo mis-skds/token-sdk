@@ -20,31 +20,31 @@ class LocationResource
 
     public function list(array $filters = []): array
     {
-        $response = $this->client->get('/api/secured/locations', $filters);
+        $response = $this->client->get('api/secured/locations', $filters);
         return $response['data'] ?? $response;
     }
 
     public function get(int $id): array
     {
-        $response = $this->client->get("/api/secured/locations/{$id}");
+        $response = $this->client->get("api/secured/locations/{$id}");
         return $response['data'] ?? $response;
     }
 
     public function create(array $data): array
     {
-        $response = $this->client->post('/api/secured/locations/save', $data);
+        $response = $this->client->post('api/secured/locations/save', $data);
         return $response['data'] ?? $response;
     }
 
     public function update(int $id, array $data): array
     {
         $data['id'] = $id;
-        $response = $this->client->post('/api/secured/locations/save', $data);
+        $response = $this->client->post('api/secured/locations/save', $data);
         return $response['data'] ?? $response;
     }
 
     public function delete(int $id): array
     {
-        return $this->client->delete("/api/secured/locations/{$id}");
+        return $this->client->delete("api/secured/locations/{$id}");
     }
 }

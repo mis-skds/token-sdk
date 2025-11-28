@@ -37,7 +37,7 @@ class AuthService
      */
     public function signUp(string $firstName, string $username, string $password): AuthResponse
     {
-        $response = $this->client->post('/api/auth/signup', [
+        $response = $this->client->post('api/auth/signup', [
             'first_name' => $firstName,
             'username' => $username,
             'password' => $password
@@ -55,7 +55,7 @@ class AuthService
      */
     public function signIn(string $username, string $password): AuthResponse
     {
-        $response = $this->client->post('/api/auth/signin', [
+        $response = $this->client->post('api/auth/signin', [
             'username' => $username,
             'password' => $password
         ]);
@@ -78,7 +78,7 @@ class AuthService
             $data['mrole_id'] = $roleId;
         }
 
-        $response = $this->client->post('/api/auth/signin-with-google-v1', $data);
+        $response = $this->client->post('api/auth/signInWithGoogleV1', $data);
 
         return new AuthResponse($response['data'] ?? $response);
     }
@@ -91,7 +91,7 @@ class AuthService
      */
     public function refreshToken(string $refreshToken): AuthResponse
     {
-        $response = $this->client->post('/api/auth/refresh-token', [
+        $response = $this->client->post('api/auth/refresh-token', [
             'refreshToken' => $refreshToken
         ]);
 

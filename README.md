@@ -24,14 +24,20 @@ use TokenManagement\SDK\TokenClient;
 
 // Initialize the client
 // Option 1: User Authentication (JWT)
+// For cloud deployment
 $client = new TokenClient([
     'base_url' => 'https://api.yourdomain.com'
+]);
+
+// For local subdirectory deployment (e.g., MAMP, XAMPP)
+$client = new TokenClient([
+    'base_url' => 'http://localhost/api.token-management'
 ]);
 
 // Option 2: Client Authentication (API Key/Secret)
 // Best for Kiosks, Displays, and Machine-to-Machine
 $client = new TokenClient([
-    'base_url' => 'https://api.yourdomain.com',
+    'base_url' => 'https://api.yourdomain.com',  // or http://localhost/api.token-management
     'client_id' => 'YOUR_CLIENT_ID',
     'client_secret' => 'YOUR_CLIENT_SECRET'
 ]);
@@ -59,10 +65,25 @@ echo "Token Number: " . $token->getTokenNumber();
 ✅ **Fluent API** - Intuitive, chainable methods  
 ✅ **Error Handling** - Custom exceptions for different error types  
 ✅ **JWT Authentication** - Automatic token management  
+✅ **Health Checks** - API connectivity and status monitoring  
 ✅ **Models** - Strongly-typed data objects  
 ✅ **PSR-4 Autoloading** - Modern PHP standards  
 
 ## Usage
+
+### Health Check
+
+Check if the API is accessible and healthy:
+
+```php
+try {
+    $health = $client->health();
+    echo "API Status: " . $health['status'];
+    // Output: API Status: ok
+} catch (\Exception $e) {
+    echo "API is down: " . $e->getMessage();
+}
+```
 
 ### Authentication
 
